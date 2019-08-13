@@ -11,6 +11,7 @@ class Maze{
         var seen = {};
 
         for(var i=0;i<Maze_Size;++i){
+            maze[i] = new Array(Maze_Size);
             for(var j =0;j<Maze_Size;++j){
                 maze[i][j] = LEFT|TOP|RIGHT|BOTTOM;
                 seen[this._convertArrayToString([i,j])] = false;
