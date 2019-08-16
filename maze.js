@@ -82,11 +82,11 @@ class Maze{
                 if(y == 0 && wall == TOP) continue;
                 if(y >= Maze_Size -1 && wall == BOTTOM) continue;
                 var next_coord = this._coordForDirection(coord,wall);
-                if(next_coord == false) continue;
+                if(!next_coord) continue;
                 if(seen[this._convertArrayToString(next_coord)] == true) continue;
                 if((walls && wall) > 0){
                     maze[y][x] ^= wall; //XOR，將交集的牆消除成0
-                    if(next_coord == true){
+                    if(next_coord){
                         maze[next_coord[1]][next_coord[0]] ^= this._oppositeDirection(wall); //將下一格的相鄰的牆消掉
                     }
                     return wall;
