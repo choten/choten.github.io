@@ -30,8 +30,7 @@ class Maze{
                 seen[this._convertArrayToString(coord)] = true;
             }
 
-            //破牆
-            var direction = this._breakRandomWall(maze,coord,seen)
+            var direction = this._breakRandomWall(maze,coord,seen) //破牆
             if(direction){ // 破牆成功
                 stack.push(coord);
                 nextCoord = this._coordForDirection(coord,direction);
@@ -64,8 +63,13 @@ class Maze{
                 }
             }
         }
-        
+
         c.stroke();
+    }
+
+    hasWall(coord,direction){
+        var grid = this.maze[coord[1]][coord[0]];
+        return (grid & direction) > 0;
     }
 
     _convertArrayToString(array){ return (array[0]+','+array[1])}
