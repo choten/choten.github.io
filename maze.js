@@ -44,6 +44,29 @@ class Maze{
         }
     }
 
+    draw(canvas){
+        var width = canvas.width();
+        var grid_size = width/Maze_Size;
+        var c = canvas.get(0).getContext("2d");
+
+        c.clearRect(0,0,canvas.width(),canvas.height());
+        for(var x =0;x < Maze_Size; ++x){
+            for(var y = 0; y < Maze_Size; ++y){
+                var grid = this.maze[y][x];
+                if((grid & RIGHT) > 0){
+                    c.moveTo((x+1) * grid_size,y * grid_size);
+                    c.lineTo((x+1) * grid_size,(y+1) * grid_size);
+                }
+
+                if((grid & BOTTOM) > 0){
+                    c.moveTo(x * grid_size,(y+1) * grid_size);
+                    c.lineTo((x+1) * grid_size,(y+1) * grid_size);
+                }
+            }
+        }
+        c.stroke();
+    }
+
     _convertArrayToString(array){ return (array[0]+','+array[1])}
 
     _coordForDirection(coord,direction){
