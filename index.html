@@ -12,8 +12,31 @@
   <script src="app.js"></script>
 </head>
 <body>
+    <style>
+        body {
+          padding: 8px;
+          font-family: Helvetica;
+        }
+    
+        .player {
+          border: 1px #000 solid;
+          border-radius: 100px;
+          position: absolute;
+        }
+    
+        #buttons {
+          touch-action: manipulation;
+          padding: 16px;
+        }
+    
+        .button {
+          width: 60px;
+          height: 60px
+        }
+      </style>
     <h2>hello maze</h2>
-    <canvas id="canvas" style="border:1px solid #000000;" width="600" height="600">
-        </canvas>
+    <div style='position:absolute' id=players>
+    </div>
+    <canvas id="canvas" style="border:1px solid #000000;" width="600" height="600"></canvas>
 </body>
 </html>
