@@ -1,41 +1,77 @@
 $(function(){
-    var maze = new Maze();
-    maze.create(30);
-    console.log(maze);
-    
+    var MAZE = new Maze();
+    var SIZE = 30;
+    MAZE.create(SIZE);
     var canvas = $("#canvas");
-    // canvas.height = 1000;
-    // canvas.width = 1000;
-    // let ctx = canvas.get(0).getContext("2d");
-    // //使用lineWidth指定線條寬度
-    // ctx.lineWidth = 3;
-    // //使用strokeStyle指定線條顏色
-    // ctx.strokeStyle = "#0000FF";
-    maze.draw(canvas);
-    var POSTION = [0,0];
+    MAZE.draw(canvas);
+    var UID = Math.round(Math.random() * 1000000);
+    var POSITION = [0, 0];
+    var PLAYERDIVS = {};
+    var GRIDSIZE= canvas.width() / SIZE;
+    var BOARD_SIZE = 600;
 
-    
+    function updatePlayerLocation(uid, coord, write = true) {
+        if (!PLAYERDIVS[uid]) {
+            var div = $("<div id=player" + uid + " class=player style='background-color:" + getRandomColor(uid) + "'></div>");
+            $("#players").append(div);
+            PLAYERDIVS[uid] = div;
+        }
+
+        var circleSize = 10;
+        var nudge = GRIDSIZE * 0.25; // offset the player a bit randomly
+        var offsetx = nudge;
+        var offsety = nudge;
+        var left = coord[0] * GRIDSIZE + offsetx;
+        var top = coord[1] * GRIDSIZE + offsety;
+        var css = { left: left, top: top, width: circleSize, height: circleSize };
+        PLAYERDIVS[uid].css(css);
+    }
+
+    function getRandomColor(seed) {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+            ++seed;
+        }
+        return color;
+    }
+
+    function updateMyPosition() {
+        console.log(POSITION);
+        updatePlayerLocation(UID,POSITION);
+    }
+
+    function clearMaze() {
+      $("#players").empty();
+      var star = $("<div class=player>&#x2605;</div>");
+      star.css({left: BOARD_SIZE - GRIDSIZE/2 - 6, top: BOARD_SIZE - GRIDSIZE/2 - 10, border:0});
+      $("#players").append(star);
+      PLAYERDIVS = {};
+      POSITION = [0, 0];
+    }
+
     window.goRight = function () {
-        if (!MAZE.hasWall(POS, Maze.RIGHT)) {
-          POS[0]++;
+        if (!MAZE.hasWall(POSITION, RIGHT)) {
+          POSITION[0]++;
           updateMyPosition();
         }
       }
       window.goDown = function () {
-        if (!MAZE.hasWall(POS, Maze.BOTTOM)) {
-          POS[1]++;
+        if (!MAZE.hasWall(POSITION, BOTTOM)) {
+          POSITION[1]++;
           updateMyPosition();
         }
       }
       window.goLeft = function () {
-        if (!MAZE.hasWall(POS, Maze.LEFT)) {
-          POS[0]--;
+        if (!MAZE.hasWall(POSITION, LEFT)) {
+          POSITION[0]--;
           updateMyPosition();
         }
       }
       window.goUp = function () {
-        if (!MAZE.hasWall(POS, Maze.TOP)) {
-          POS[1]--;
+        if (!MAZE.hasWall(POSITION, TOP)) {
+          POSITION[1]--;
           updateMyPosition();
         }
       }
@@ -60,4 +96,13 @@ $(function(){
         // Disable document scrolling.
         e.preventDefault();
     });
+
+    function funInit() {
+        console.log(MAZE);
+        console.log(PLAYERDIVS);
+        clearMaze();
+        updatePlayerLocation(UID, POSITION, false);
+    }
+
+    funInit();
 });
