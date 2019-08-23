@@ -1,13 +1,12 @@
 $(function(){
     var MAZE = new Maze();
     var SIZE = 30;
-    MAZE.create(SIZE);
-    var canvas = $("#canvas");
-    MAZE.draw(canvas);
+    var CANVAS = $("#canvas");
     var UID = Math.round(Math.random() * 1000000);
     var POSITION = [0, 0];
+    var DESTINATION = [SIZE -1,SIZE -1];
     var PLAYERDIVS = {};
-    var GRIDSIZE= canvas.width() / SIZE;
+    var GRIDSIZE= CANVAS.width() / SIZE;
     var BOARD_SIZE = 600;
 
     function updatePlayerLocation(uid, coord, write = true) {
@@ -27,6 +26,15 @@ $(function(){
         PLAYERDIVS[uid].css(css);
     }
 
+    function updateMyPosition() {
+      console.log("POSITION: "+POSITION+" 終點: "+[SIZE,SIZE]);
+      if(POSITION[0] == DESTINATION[0] && POSITION[1] == DESTINATION[1]){
+        alert("抵達終點!");
+        return
+      }
+      updatePlayerLocation(UID,POSITION);
+    }
+  
     function getRandomColor(seed) {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -37,12 +45,7 @@ $(function(){
         return color;
     }
 
-    function updateMyPosition() {
-        console.log(POSITION);
-        updatePlayerLocation(UID,POSITION);
-    }
-
-    function clearMaze() {
+    function clearPlayer() {
       $("#players").empty();
       var star = $("<div class=player>&#x2605;</div>");
       star.css({left: BOARD_SIZE - GRIDSIZE/2 - 6, top: BOARD_SIZE - GRIDSIZE/2 - 10, border:0});
@@ -98,9 +101,10 @@ $(function(){
     });
 
     function funInit() {
-        console.log(MAZE);
-        console.log(PLAYERDIVS);
-        clearMaze();
+        MAZE.create(SIZE);
+        MAZE.draw(CANVAS);
+        // console.log(MAZE);
+        clearPlayer();
         updatePlayerLocation(UID, POSITION, false);
     }
 
