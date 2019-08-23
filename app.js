@@ -27,12 +27,12 @@ $(function(){
     }
 
     function updateMyPosition() {
-      console.log("POSITION: "+POSITION+" 終點: "+[SIZE,SIZE]);
-      if(POSITION[0] == DESTINATION[0] && POSITION[1] == DESTINATION[1]){
-        alert("抵達終點!");
-        return
-      }
-      updatePlayerLocation(UID,POSITION);
+        updatePlayerLocation(UID, POSITION);
+        if (POSITION[0] == DESTINATION[0] && POSITION[1] == DESTINATION[1]) {
+            setTimeout(function () {
+                alert("抵達終點!🥇🎉");
+            },100);
+        }
     }
   
     function getRandomColor(seed) {
@@ -47,8 +47,8 @@ $(function(){
 
     function clearPlayer() {
       $("#players").empty();
-      var star = $("<div class=player>&#x2605;</div>");
-      star.css({left: BOARD_SIZE - GRIDSIZE/2 - 6, top: BOARD_SIZE - GRIDSIZE/2 - 10, border:0});
+      var star = $("<div class=player>🏁</div>");
+      star.css({left: BOARD_SIZE - GRIDSIZE/2 - 8, top: BOARD_SIZE - GRIDSIZE/2 - 10, border:0});
       $("#players").append(star);
       PLAYERDIVS = {};
       POSITION = [0, 0];
