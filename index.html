@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 
 <html lang="en">
 <head>
@@ -7,36 +7,40 @@
   <title>Maze</title>
   <meta name="description" content="maze">
   <meta name="author" content="Jordanchiu">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="jquery.js"></script>
   <script src="maze.js"></script>
   <script src="app.js"></script>
 </head>
 <body>
     <style>
-        body {
-          padding: 8px;
-          font-family: Helvetica;
-        }
-    
-        .player {
-          border: 1px #000 solid;
-          border-radius: 100px;
-          position: absolute;
-        }
-    
-        #buttons {
-          touch-action: manipulation;
-          padding: 16px;
-        }
-    
-        .button {
-          width: 60px;
-          height: 60px
-        }
-      </style>
-    <h2>hello maze</h2>
-    <div style='position:absolute' id=players>
-    </div>
-    <canvas id="canvas" style="border:1px solid #000000;" width="600" height="600"></canvas>
+      body {
+        padding: 8px;
+        font-family: Helvetica;
+      }
+  
+      .player {
+        border: 1px #000 solid;
+        border-radius: 100px;
+        position: absolute;
+      }
+    </style>
+    <table width="600" height="600">
+        <tr>
+            <td>
+                <h2 style="font-family:  Microsoft JhengHei" text-align: center>迷宮產生器</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="position:absolute" id=players></div>
+                <canvas id="canvas" style="border:1px solid #000000;" width="600" height="600"></canvas>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 style="font-family:  Microsoft JhengHei">使用鍵盤方向鍵(上、下、左、右)來抵達終點吧!</h4>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
