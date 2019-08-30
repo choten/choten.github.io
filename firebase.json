@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "maze",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
