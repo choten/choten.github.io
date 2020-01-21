@@ -1,0 +1,54 @@
+﻿<!doctype html>
+
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+
+  <title>Maze</title>
+  <meta name="description" content="maze">
+  <meta name="author" content="Jordanchiu">
+  <script src="jquery.js"></script>
+  <script src="maze.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+    <style>
+        body {
+            padding: 8px;
+            font-family: Microsoft JhengHei;
+        }
+		.player {
+			border: 1px #000 solid;
+			border-radius: 100px;
+			position: absolute;
+		}
+		.headertekst {
+			text-align: center;
+			width:100%
+		}
+    </style>
+    <table width="600" height="600">
+        <tr>
+            <td>
+                <h2 class="headertekst">迷宮產生器</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="position:absolute" id=players></div>
+                <canvas id="canvas" style="border:1px solid #000000;" width="600" height="600"></canvas>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 class="headertekst">使用鍵盤方向鍵(上、下、左、右)來抵達終點吧!</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h5 class="headertekst" style="color: grey">網站使用 javascript ES6 語法，部分瀏覽器(如: IE)不支援</h5>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
